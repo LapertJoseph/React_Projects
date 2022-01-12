@@ -209,5 +209,64 @@ Grâce à cette technique, on peut désormais travailler avec des données dynam
 
 PASSER DES DONNEES AVEC DES PROPS (A RETENIR, TRES IMPORTANT)
 
+Dans React, on peut réutiliser un components comme on le souhaite en ajoutant le components dans le rendu souhaiter, cependant pour eviter que les données du
+components soit les mêmes, on va devoir utiliser les "props" pour que les donnée afficher diffère avec les autres utilisation de components.
 
+1ERE ETAPE : App.JS :
 
+avant le rendu de l'affichage, on ajoute une constante qui prend un tableau d'objet et on lui donne des données pour l'exemple :
+
+	const expenses = [
+    {
+      id: "e1",
+      title: "Toilet Paper",
+      amount: 94.12,
+      date: new Date(2020, 7, 14),
+    },
+    { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
+    {
+      id: "e3",
+      title: "Car Insurance",
+      amount: 294.67,
+      date: new Date(2021, 2, 28),
+    },
+    {
+      id: "e4",
+      title: "New Desk (Wooden)",
+      amount: 450,
+      date: new Date(2021, 5, 12),
+    },
+  ];
+
+Ensuite dans le return on va aller donner au premier components chaque propriétés et sa valeur pour qu'on puisse les différencier.
+
+	<ExpenseItem
+			title={expenses[0].title}	// on note que la syntaxe des props se fait dans la balise du components <ExpenseItem title={expenses[0].title}
+			amout={expenses[0].amount}	// la syntaxe est {nomVariable[index].propriétés} = {expenses[0].amount} = 94.12
+			date={expenses[0].date}		// on le fait pour chaque propriétés
+		></ExpenseItem>					// puis on va bien sur fermer la balise pour que ca soit un components valide.
+
+Ensuite on le réutilise autant de fois qu'on a d'élément dans notre tableau en pensant a bien changer l'index pour ne pas prendre le meme élément.
+
+2EME ETAPE : ExpenseItem (COMPONENT)
+
+Pour faire le lien entre les données passé dans App.js et notre components, on va aller passer un parametre qu'on nomme "props". Ainsi, on pourra récupérer les données
+dans le rendu pour qu'elles s'affichent correctement. "function ExpenseItem(props)" <= on passe props comme parametre qui prend un objet avec une association de key-valeur (standard pour un objet)
+
+Une fois props entrer en parametre, on va dans l'élément JSX que l'on afficher et on déclare les valeurs avec {props.propriétés} = {props.title} = titre 
+et on le fais pour les autres rendu {props.amout} = amount et {props.date.ISOString()} = date
+
+exemple :
+
+ return (
+    <div className="expense-item">
+      <div>{props.date.toISOString()}</div>								// il va prendre la date entrer dans la balise du components <ExpenseItem /> et lui assigner la date voulu 
+      <div className="expense-item__description">
+        <div>
+          <h2>{props.title}</h2>										// il va prendre le titre entrer dans la balise du components <ExpenseItem /> et lui assigner le titre voulu
+        </div>
+        <div className="expense-item__price">${props.amout}</div>		// il va prendre le montant entrer dans la balise du components <ExpenseItem /> et lui assigner le montant voulu
+      </div>
+    </div>
+ 
+Comme on a définis plus utilisation du components avec ses propres affichage de valeurs, on obtiens un rendu du même components mais avec des valeurs différentes .
