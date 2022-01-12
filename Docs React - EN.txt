@@ -168,4 +168,46 @@ EN RESUMER :
 2) L'importer dans le fichier désirer en utilisant le mot clé "import"
 3) Le placer à l'endroit voulu.
 
+ECRIRE DU CODE JSX PLUS COMPLEXE
+
+Lorsqu'on veut écrire du code JSX sur plusieurs ligne on doit avoir une Div parent pour tous les éléments que l'on coder 
+	exemple : 
+
+	return  <div>							// <==    ici on observe qu'il y a bien une div parent a toutes les autres div qui englobe l'expression JSX
+                <div>Date</div>
+                <div>Title</div>
+                <div>Amount</div>
+            </div>							// <==    Fermeture de la div parente
+
+AJOUTER DU STYLE DANS LE COMPONENT
+
+Lorsqu'on veut ajouter du style à un components, on créer dans le meme dossier que le components une fichier css ou on va écrire tous le css du components
+une fois le css écrit, on retourne dans le components et il faut dire à React (comme dans un html classique) qu'il doit importer le ExpenseItem.css dans le components
+pour que le style soit appliquer sur nos rendu. Lorsqu'on définis du css on cible les div pour appliquer les styles désiré, Dans React, on cible les divs avec le mot
+clé "className" au lieu de class en HTML classique. (a retenir, Très important).
+
+1) on créer le fichier Nom.css et on écris le css voulu
+2) on retourne dans le components 
+3) on import le fichier css pour que le style soit appliquer sur le components.
+
+Output data and Working with expression JSX
+
+Généralement on ne code jamais de données en dur dans un components, on utilise les données dynamique pour afficher un rendu ou une logique 
+on a vu dans le cours qu'on pouvais écrire du html et du css mais, où écrit-on le JavaScript ? 
+et bien on écrit le JavaScript avant le return et c'est une chose à retenir toute la logique dans un components est écrite avant le return.
+exemple:
+	const expenseDate= new Date(2021, 2, 28);		// On stocke dans chaque variable la données à laquelle on veut l'associer ( fonction Date() )
+    const expenseTitle= 'Car Insurance';			// Une chaîne de caractère 
+    const expenseDate= '294.67';					// Un nombre.
+
+A RETENIR ABSOLUMENT INDISPENSABLE POUR LA SUITE : 
+Lorsqu'on veut afficher des données dynamique dans du JSX, ON UTLISE LES {expression} 
+exemple : 
+	<h2>{expenseTitle}</h2>  // ici on dis a JavaScript de prendre la valeur de la const "expenseTitle" est de l'afficher dans le rendu de la page
+
+Grâce à cette technique, on peut désormais travailler avec des données dynamique et non plus des données coder en dur dans notre JSX
+
+PASSER DES DONNEES AVEC DES PROPS (A RETENIR, TRES IMPORTANT)
+
+
 
