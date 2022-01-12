@@ -126,7 +126,7 @@ Surtout ne pas oublier que les méthode Built-in prend en parametre une fonction
 ******************************************************************************************************************************************************************************************************
 ********************************************************************* REACT BASICS *********************************************************************************************************************
 
-INTRO :
+--INTRO :
 
 React est une librairie JavaScript pour faire des interfaces utilisateur en simplifiant la construction de ces interfaces (simplifiant le code) 
 Tout React est construit sur les components cependant cela nous ramène à une question fondamentale : Qu'est ce qu'un components ? 
@@ -134,7 +134,7 @@ toute l'interface user est composée de components. un components est un bloc de
 Donc un components est une composition de HTML, CSS et facultativement je JavaScript pour la logique.
 React utilise deux concept dans le développement qui sont fondamentale : le code réutilisable est la fragmentation de code. ( base de code petite et plus malléable)
 
-COMMENT UN COMPONENT EST-IL CONSTRUIT ? :
+--COMMENT UN COMPONENT EST-IL CONSTRUIT ? :
 
 En finalité, lorsqu'on fais des interfaces utilisateur ou développe des sites Front-end, on utilise du HTML/CSS/JS
 React le fais également mais il assemble les 3 technologies pour créer ce qu'on appelle un components.
@@ -143,19 +143,19 @@ On ne va pas faire du react pour lui dire d'appeller une page HTML en questions 
 enlever. On ne créer par réellement d'élément dans le DOM, mais on lui dis qu'elle état final l'élément dois avoir et React s'occupe de le faire en dessous du capot.
 
 
-QU'EST-CE QUE LE JSX ? 
+--QU'EST-CE QUE LE JSX ? 
 
 Le JSX est du HTML écrit dans un fichier JavaScript. Tout cela est rendu possible car il y a une étape de transformation sous le capot qui permet d'interpréter
 ce code qui normalement devrait afficher une erreur.
 Le JSX que nous écrivons passe par une étape de transformation qui permet d'assembler toutes les features créer en JSX et permet le rendu dans le browser.
 
-COMMENT FONCTIONNE REACT ?
+--COMMENT FONCTIONNE REACT ?
 
 Avec React, on écrit seulement le code que l'on veut affiche. On lui demande d'afficher l'état final dans lequel il doit apparaître dans le rendu browser (Approche déclarative)
 contrairement à ce qu'on appelle (déclaration impérative) que l'on faisait dans le JavaScript normal.
 React va générer le code que l'on déclare sous le capot pour l'afficher dans le rendu browser tel qu'on veut le voir.
 
-BUILD OUR FIRST COMPONENTS ?
+--BUILD OUR FIRST COMPONENTS ?
 
 Une des meilleures approche pour creer un components est de le créer dans un dossier et de faire un dossier pour chaque components. Il y a une régle à respecter lorsqu'on 
 créer un nom de components : Commencer par un lettre capitale et ensuite écrire le mot. s'il y a plusieurs nom aprés le premier on utilise le camelCase.
@@ -168,7 +168,7 @@ EN RESUMER :
 2) L'importer dans le fichier désirer en utilisant le mot clé "import"
 3) Le placer à l'endroit voulu.
 
-ECRIRE DU CODE JSX PLUS COMPLEXE
+--ECRIRE DU CODE JSX PLUS COMPLEXE
 
 Lorsqu'on veut écrire du code JSX sur plusieurs ligne on doit avoir une Div parent pour tous les éléments que l'on coder 
 	exemple : 
@@ -179,7 +179,7 @@ Lorsqu'on veut écrire du code JSX sur plusieurs ligne on doit avoir une Div par
                 <div>Amount</div>
             </div>							// <==    Fermeture de la div parente
 
-AJOUTER DU STYLE DANS LE COMPONENT
+--AJOUTER DU STYLE DANS LE COMPONENT
 
 Lorsqu'on veut ajouter du style à un components, on créer dans le meme dossier que le components une fichier css ou on va écrire tous le css du components
 une fois le css écrit, on retourne dans le components et il faut dire à React (comme dans un html classique) qu'il doit importer le ExpenseItem.css dans le components
@@ -200,14 +200,14 @@ exemple:
     const expenseTitle= 'Car Insurance';			// Une chaîne de caractère 
     const expenseDate= '294.67';					// Un nombre.
 
-A RETENIR ABSOLUMENT INDISPENSABLE POUR LA SUITE : 
+--A RETENIR ABSOLUMENT INDISPENSABLE POUR LA SUITE : 
 Lorsqu'on veut afficher des données dynamique dans du JSX, ON UTLISE LES {expression} 
 exemple : 
 	<h2>{expenseTitle}</h2>  // ici on dis a JavaScript de prendre la valeur de la const "expenseTitle" est de l'afficher dans le rendu de la page
 
 Grâce à cette technique, on peut désormais travailler avec des données dynamique et non plus des données coder en dur dans notre JSX
 
-PASSER DES DONNEES AVEC DES PROPS (A RETENIR, TRES IMPORTANT)
+--PASSER DES DONNEES AVEC DES PROPS (A RETENIR, TRES IMPORTANT)
 
 Dans React, on peut réutiliser un components comme on le souhaite en ajoutant le components dans le rendu souhaiter, cependant pour eviter que les données du
 components soit les mêmes, on va devoir utiliser les "props" pour que les donnée afficher diffère avec les autres utilisation de components.
@@ -270,3 +270,30 @@ exemple :
     </div>
  
 Comme on a définis plus utilisation du components avec ses propres affichage de valeurs, on obtiens un rendu du même components mais avec des valeurs différentes .
+
+--AJOUTER DE LA LOGIQUE JAVASCRIPT DANS UN COMPONENT 
+
+Lorsqu'on veut ajouter de la logique dans un components React, on le définis Généralement avant le return. C'est une bonne pratique à garder pour que notre code JSX reste clean
+et compréhensible.
+
+on pourrais par exemple ecrire directement de la logique dans le return : 
+	return (
+    <div className="expense-item">
+      <div>
+          <div>{props.date.toLocaleString( 'en'-US, { month: 'long'} )}</div>
+          <div>{year}</div>
+          <div>{day}</div>
+      </div>
+
+Cependant avec cette pratique, le JSX est moins compréhensible.
+Donc on va plutot stocker la logique dans une variable pour pouvoir l'utiliser en crochets
+ce qui donne : 
+	const month = props.date.toLocaleString('en-US', { month: 'long' } );		<== on stock la logique du mois dans month 
+    const day = props.date.toLocaleString('en-US', { day: '2-digit' } );		<== on stock la logique de day dans day
+    const year = props.date.getFullYear();										<== on stock la logique de year dans year
+
+et dans le return, on fais : 
+	<div>{month}</div>			<== on met la variable entre crochets pour le mois 
+	<div>{year}</div>			<== on met la variable entre crochets pour l'année
+	<div>{day}</div>			<== on met la variable entre crochets pour le jour .
+
