@@ -168,4 +168,25 @@ EN RESUMER :
 2) L'importer dans le fichier désirer en utilisant le mot clé "import"
 3) Le placer à l'endroit voulu.
 
+ECRIRE DU CODE JSX PLUS COMPLEXE
+
+Lorsqu'on veut écrire du code JSX sur plusieurs ligne on doit avoir une Div parent pour tous les éléments que l'on coder 
+	exemple : 
+
+	return  <div>							// <==    ici on observe qu'il y a bien une div parent a toutes les autres div qui englobe l'expression JSX
+                <div>Date</div>
+                <div>Title</div>
+                <div>Amount</div>
+            </div>							// <==    Fermeture de la div parente
+
+AJOUTER DU STYLE DANS LE COMPONENT
+
+Lorsqu'on veut ajouter du style à un components, on créer dans le meme dossier que le components une fichier css ou on va écrire tous le css du components
+une fois le css écrit, on retourne dans le components et il faut dire à React (comme dans un html classique) qu'il doit importer le ExpenseItem.css dans le components
+pour que le style soit appliquer sur nos rendu.
+
+1) on créer le fichier Nom.css et on écris le css voulu
+2) on retourne dans le components 
+3) on import le fichier css pour que le style soit appliquer sur le components.
+
 
