@@ -1,0 +1,171 @@
+********************************************************************RAPPEL ES6 and Modern JavaScript********************************************************************
+************************************************************************************************************************************************************************
+Syntaxe création de classes
+
+ES6/BABEL
+
+class Human {
+  gender = 'Male'
+  
+  printGender = () =>{
+    console.log(this.gender);
+  }
+}
+
+const person = new Person();
+person.printGender();
+person.printMyName();	
+
+JSX / React 
+
+class Person extends Human {
+  name = 'Max';
+  gender = 'Female';
+
+  printMyName = () => {
+    console.log(this.name);
+  }
+}
+const person = new Person();
+person.printGender();
+person.printMyName();
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+L'Operator ... SPREAD & REST
+
+Spread Operator permet de destructurer les éléments d'un tableau ou les propriétés d'un objet JS
+
+par exemple pour un tableau on fais : 
+	
+	const oldArray = [-1, -2, -3];
+	const newArray = [...oldArray,1 ,2]    // on met les 3 points, puis les nouvelles valeur Output : [-1, -2, -3, 0, 1, 2] 
+	
+et maintenant pour un object : 
+
+	const oldObject = {
+    name : "Joseph",
+    age : 36,
+    ville : "Gonesse"
+
+	};
+	
+	const newObject = {...oldObject, pays: "France"};
+	
+	console.log(newObject);				// Output =   {name: 'Joseph', age: 36, ville: 'Gonesse', pays: 'France'}  il a rajouter tout de l'ancien tableau puis les nouvelles props de l'ancien.
+
+rest operator permet d'appliquer une condition a chaque élément passé dans les parametres d'une fonction .
+
+	const filter = (...args) => {
+
+		return args.filter(el => el === 1);
+	}
+
+	console.log(filter(1,2,3));    // Output : [1]    il a filtrer les éléments passer en args (1, 2, 3) et il a vérifier la function args.filter(el => el === 1) qui lui dis de return un el = 1
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Destructuring :
+
+Le destructuring permet de facilement extraire des éléments d'un tableau ou des propriétés d'objet et les stocker dans une variable.
+
+	exemple pour un tableau :
+	[a, b] = ["Hello","Joseph"]
+	console.log(a);
+	console.log(b);
+	
+	exemple pour les object : (A compléter plus tard dans le cours .)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Reference and Primitive Types.
+
+Primitive type : 
+	
+	const number = 1;   // nombres, string, booléen sont d'autres types primitif
+
+Reférence Type : 
+	
+	const person = {						/  l'Objet person est stocker dans la mémoire et la const person est un pointeur qui pointe vers la mémoire.
+		name: "Max"
+	};
+	
+	const secondPerson = person;			/  Lorsqu'on assigne secondPerson = person , c'est le pointeur qui est copié et non pas l'objet en lui même.
+	console.log(secondPerson);  			/  Output : {name: 'Max'} 
+
+	person.name = 'Manu'					/  ici on réassigne la valeur name non pas par l'object mais par la valeur du pointeur qui lui pointe vers l'objet. Pour cela que l'on log Manu et pas Max
+	console.log(secondPerson);  			/  Output ; {name: 'Manu'}
+	
+Si on veut vraiment la valeur qui se trouve dans l'objet en lui même il faut :
+
+	const secondPerson = {
+    ...person								/ on utilise un spread operator du premier objet
+	};
+
+	person.name = 'Manu'
+	console.log(secondPerson);   			/  Output : {name: 'Max'}  La on voit que l'on a copier la valeur de l'objet en lui meme et pas la valeur du pointeur.
+	
+il faut retenir que les tableau et les objets sont des types références et si on les réassigne (comme pour les variables), on copie la valeur du pointeur et non pas les propriétés de l'objet.
+Si on veut copier la propriétés en elle meme, il faut créer un second objet et utiliser le spread operator pour récupérer la propriété désiré !
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Rappel : Fonction fléchée avec Map(); Sort(); filter(); 
+
+Lorsqu'on utilise des fonctions Built-in, celle ci prend en parametres une fonction (fonction normal ou fléchée) :
+	
+	const numbers = [1,2,3];                  			// déclare un tableau avec des valeurs
+
+	const doubled = numbers.map((el) => {     			// on stocke dans "doubled" le tableau retourner par map et on lui passe en parametre 'el' (le nom choisi par l'user)
+		return el * 2                         			// on retourne le résultat de de la boucle  multiplier par 2
+	})
+
+	console.log(numbers);   							// Ce qui donne  [1, 2, 3]
+	console.log(doubled);   							// Ce qui donne  [2, 4, 6]
+
+Surtout ne pas oublier que les méthode Built-in prend en parametre une fonction.
+
+
+
+******************************************************************************************************************************************************************************************************
+******************************************************************************************************************************************************************************************************
+******************************************************************************************************************************************************************************************************
+********************************************************************* REACT BASICS *********************************************************************************************************************
+
+INTRO :
+
+React est une librairie JavaScript pour faire des interfaces utilisateur en simplifiant la construction de ces interfaces (simplifiant le code) 
+Tout React est construit sur les components cependant cela nous ramène à une question fondamentale : Qu'est ce qu'un components ? 
+toute l'interface user est composée de components. un components est un bloc de construction réutilisable dans l'interface utilisateur.
+Donc un components est une composition de HTML, CSS et facultativement je JavaScript pour la logique.
+React utilise deux concept dans le développement qui sont fondamentale : le code réutilisable est la fragmentation de code. ( base de code petite et plus malléable)
+
+COMMENT UN COMPONENT EST-IL CONSTRUIT ? :
+
+En finalité, lorsqu'on fais des interfaces utilisateur ou développe des sites Front-end, on utilise du HTML/CSS/JS
+React le fais également mais il assemble les 3 technologies pour créer ce qu'on appelle un components.
+La plupart du temp, les components React associent HTML et JavaScript et éventuellement du CSS cependant il n'est pas obligatoire dans React.
+On ne va pas faire du react pour lui dire d'appeller une page HTML en questions mais plutôt on va définir l'état final désiré et React lui va chercher quel élement a besoin d'être chargé, changé ou
+enlever. On ne créer par réellement d'élément dans le DOM, mais on lui dis qu'elle état final l'élément dois avoir et React s'occupe de le faire en dessous du capot.
+
+
+QU'EST-CE QUE LE JSX ? 
+
+Le JSX est du HTML écrit dans un fichier JavaScript. Tout cela est rendu possible car il y a une étape de transformation sous le capot qui permet d'interpréter
+ce code qui normalement devrait afficher une erreur.
+Le JSX que nous écrivons passe par une étape de transformation qui permet d'assembler toutes les features créer en JSX et permet le rendu dans le browser.
+
+COMMENT FONCTIONNE REACT ?
+
+Avec React, on écrit seulement le code que l'on veut affiche. On lui demande d'afficher l'état final dans lequel il doit apparaître dans le rendu browser (Approche déclarative)
+contrairement à ce qu'on appelle (déclaration impérative) que l'on faisait dans le JavaScript normal.
+React va générer le code que l'on déclare sous le capot pour l'afficher dans le rendu browser tel qu'on veut le voir.
+
+BUILD OUR FIRST COMPONENTS ?
+
+Une des meilleures approche pour creer un components est de le créer dans un dossier et de faire un dossier pour chaque components. Il y a une régle à respecter lorsqu'on 
+créer un nom de components : Commencer par un lettre capitale et ensuite écrire le mot. s'il y a plusieurs nom aprés le premier on utilise le camelCase.
+Un components n'est ni plus ni moins qu'une fonction JavaScript que l'on exporte comme on l'a vu avec App.js. Une fois le fichier créer, on retourne dans l'App.js pour 
+l'importer en haut du fichier en écrivant " import ExpenseItem from "./components/ExpenseItem"; " en écrivant cela on dis a React d'importer le components que l'on
+vient de créer. Une fois cela effectuer on le met aprés le h2 en commençant par ouvrir un "<" pour mettre le components et SURTOUT ne pas oublier de fermer avec "/>"
+car c'est un élément JSX.
+EN RESUMER : 
+1) Creer son components(fonction) et écrire le code désirer et l'exporter
+2) L'importer dans le fichier désirer en utilisant le mot clé "import"
+3) Le placer à l'endroit voulu.
+
+
