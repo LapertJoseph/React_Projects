@@ -336,3 +336,17 @@ donc au lieu de mettre des div on fais :
   <Card className="expense-item">   <= <Components class.... >  on le wrap avec le components et non plus une div pour que le css soit appliquer à ses enfants.
 
 Cela permet d'éviter la répétition de code css et de passer du css au enfants.
+
+ALTERNATIV SYNTAX FUNCTION 
+
+au lieu d'écrire nos composant avec un : 
+
+  function Expenses() {}
+
+on utilisera désormais la fonction fléchée que l'on a vu plus tot dans le cours pour un souci de maintenabilité : 
+
+  const Expenses = () => {}   <= ES6
+
+
+
+
