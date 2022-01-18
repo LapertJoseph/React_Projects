@@ -297,3 +297,18 @@ et dans le return, on fais :
 	<div>{year}</div>			<== on met la variable entre crochets pour l'année
 	<div>{day}</div>			<== on met la variable entre crochets pour le jour .
 
+RENDRE SON CODE PLUS MALLEABLE ET clean
+
+Lorsqu'on démarre un projet React on pourrais se dire que ca serait simple de tous mettre dans le components mais a mesure que le project 
+grandis, on sera amener a rendre plus facile la compréhension du code pour les autres développeur donc il faudra spliter son code pour 
+qu'on puisse séparer la logique JS de l'affichage .
+La bonne pratique est de mettre tous la logique dans un components et d'exporte le components dans ExpenseItem.js pour qu'on ai une seule ligne de code
+au lieu d'avoir n ligne de code.
+
+On a créer un nouveau components ExpenseDate.js, où on a stocker toute la logique et on a donc exporter le components dans ExpenseItem.js en n'oubliant pas 
+de passer props en parametres pour que les données soit utiliser dans app.js sinon on aurais pas eu de rendu.
+Ensuite on ajoute dans la balise du components ExpenseDate les props pour qu'elle soit render 
+
+    <ExpenseDate date={props.date}/>   on ajoute date={props.date} pour que le rendu soit effectuer et donc que la valeur soit lu.
+
+En faisant ce split de code, cela nous permet de garder une meilleurs lisibilité du code et donc une meilleurs compréhension.
