@@ -312,3 +312,4 @@ Ensuite on ajoute dans la balise du components ExpenseDate les props pour qu'ell
     <ExpenseDate date={props.date}/>   on ajoute date={props.date} pour que le rendu soit effectuer et donc que la valeur soit lu.
 
 En faisant ce split de code, cela nous permet de garder une meilleurs lisibilité du code et donc une meilleurs compréhension.
+
