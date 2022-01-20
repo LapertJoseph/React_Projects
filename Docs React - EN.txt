@@ -372,3 +372,27 @@ Ce qu'il faut retenir :
 C'est que React executera tous les components ainsi que leurs JSX à l'intérieure de ceux-ci et enfin il s'arretera quand 
 il ne trouvera plus de components ou function à executer.
 
+TRAVAILLER AVEC LES STATES 
+
+Pour qu'on puisse faire une mise à jour du rendu de la page dans React, nous allons utiliser les STATES qui est un concept très important dans REACT
+Lorsqu'on va executer le changement de state, React va alors Parser A NOUVEAU la page pour que le rendu soit mise à jour avec les nouveaux éléments.
+par défaut, les variables régulière comme `let title = props.title` ne seront pas comprise dans la ré-évaluation du code pour changement.
+Si on a une variable et si la variable change entre temp, React va l'ignorer et passer à la suite.
+
+Pour dire à REACT de ré-évaluer une nouvelle fois le component, il faut dabord importer la fonction 'useState' dans le fichier du component et ainsi elle nous permet
+de définir des valeurs appellé STATE ou le changement de ces valeurs devrait se traduire par un nouvel appel de la fonction du composant.
+c'est une différence importante avec la regular variable utilisé précédement.
+
+Comment utiliser useState ? 
+
+1) importer la fonction 'useState' dans l'import en haut du component.   ex: import { useState } from 'react'
+2) A l'intérieur du component (TRES IMPORTANT) on appelle "useState();"  NOTE : useState ne pourra jamais se trouvait en DEHORS du component ou bien dans une fonction imbriquée
+3) useState doit avoir une valeur par défaut quand on l'appel. (Avec useState on créer un genre spécial de variable)    ex : useState(props.title) 
+4) ensuite elle prend un deuxieme parametre qui est une fonction qui permet de modifier la valeur par défaut de useState.
+5) On utilise ensuite le destructuring array pour écrire en JS moderne. ex : const [] = useState(props.title) 
+6) lorsqu'on log le hook useState on voit qu'il renvoit un tableau avec deux parametre (une valeur par défaut et une fonction)
+7) on définis donc la valeur par défaut dans le tableau et en deuxieme parametre un nom de fonction qui va modif la valeur par défaut. ex [title, setTitle] title : défaut  setTitle : fonction
+8) le premier parametre est un pointeur qui gère la valeur par défaut et le second est une fonction qu'on appellera pour définir une nouvelle valeur à l'élement. 
+9) Pour assigner donc une nouvelle valeur, il faut appeller la fonction setTitle. ex : 'setTitle()'
+10) Enfin on indique dans la paranthése la nouvelle valeur souhaité. ex : 'setTitle('Updated!!')'   La nouvelle valeur sera donc 'Updated' et grâce à useState elle sera afficher.
+
