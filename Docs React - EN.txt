@@ -354,7 +354,21 @@ Pour ajouter un evenement, on ajoute le onClick directement dans la balise chevr
   <button onClick={clickHandler}>Change</button>  // ici on ajoute un évenement onClick et on met une fonction "clickHandler" qui modifiera seulement au clickHandler
 
 La logique de la fonction sera en dehors du return c'est à dire au dessous pour qu'on puisse garder le JSX clean et eviter la logique dans celui ci.
+Chaque evenement ou écoute d'évenement attend une fonction entre accolade.
 
+COMMENT LES COMPONENTS SONT-IL EXECUTER DANS REACT ?
 
+Une chose à savoir quand on code avec React est que le code est chargé une fois lors du chargement de la page et le contenu de celle-ci, ne pourra plus etre
+modifier. ce qui veut dire que si on souhaite faire un nouveau rendu ou une mise a jour du rendu, cela n'est possible qu'avec les STATES.
+au chargement de la page, React va parse le code à la recherche de toutes les fonctions (sachant qu'un components n'est qu'une fonction). 
+pour executer une fonction JS basique on met des () mais cela ne fonctionne pas pareil avec les Components. Pour qu'un component soit executer, 
+il faut seulement l'écrire et cela reviens à l'executer. 
+Exemple :
 
+  maFonction ()   La j'execute une fonction basique JavaScript   
+  <Components />  La j'execute un appel de components qui revient a executer le code JSX qui se trouve dans le components.
+
+Ce qu'il faut retenir :
+C'est que React executera tous les components ainsi que leurs JSX à l'intérieure de ceux-ci et enfin il s'arretera quand 
+il ne trouvera plus de components ou function à executer.
 
