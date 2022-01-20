@@ -347,6 +347,14 @@ on utilisera désormais la fonction fléchée que l'on a vu plus tot dans le cou
 
   const Expenses = () => {}   <= ES6
 
+Listening event & working with event Handlers
+
+Pour ajouter un evenement, on ajoute le onClick directement dans la balise chevron de l'élément: 
+
+  <button onClick={clickHandler}>Change</button>  // ici on ajoute un évenement onClick et on met une fonction "clickHandler" qui modifiera seulement au clickHandler
+
+La logique de la fonction sera en dehors du return c'est à dire au dessous pour qu'on puisse garder le JSX clean et eviter la logique dans celui ci.
+
 
 
 
